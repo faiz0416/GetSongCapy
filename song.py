@@ -8,6 +8,7 @@ from random import choice
 
 
 def getsong():
+    PATH = 'chromedriver.exe'
     options = webdriver.ChromeOptions()
 
     options.add_argument('--ignore-certificate-errors')
@@ -17,7 +18,7 @@ def getsong():
         "excludeSwitches", ['enable-automation', 'enable-logging'])
     wd_path = "C:/Users/faiz0/OneDrive/桌面/chromedriver_win32/chromedriver.exe"
 
-    driver = webdriver.Chrome(chrome_options=options)
+    driver = webdriver.Chrome(PATH,chrome_options=options)
     size_Dict = driver.get_window_size()
 
     driver.get(
