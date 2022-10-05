@@ -15,26 +15,22 @@ def getsong():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-    
-    driver.get(
-        'https://www.youtube.com/watch?v=23g5HBOg3Ic&list=RDCLAK5uy_mOmfogvkugBD9vd5EbejT2y82WidC6as0&start_radio=1')
+    driver.get('https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M')
 
     WebDriverWait(driver, 30).until(
         EC.presence_of_element_located(
-            (By.ID, 'video-title'))
+            (By.CLASS_NAME, 'HcMOFLaukKJdK5LfdHh0'))
     )
 
-    songs = driver.find_elements(By.ID, 'wc-endpoint')
+    songs = driver.find_elements(By.CLASS_NAME, 't_yrXoUO3qGsJS4Y6iXX')
     list_song = []
     # video-title   wc-endpoint
 
     for song in songs:
-        list_song.append(str(song.get_attribute('href')))
-
+        if song.get_attribute('href') != None:
+            list_song.append(str(song.get_attribute('href')))
+            
     onesong = choice(list_song)
 
-    print(onesong)
-
-    time.sleep(2)
     driver.quit()
     return onesong
