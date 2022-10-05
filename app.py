@@ -57,7 +57,7 @@ def handle_message(event):
         getsong()
         replysong = getsong()
         line_bot_api.reply_message(
-            event.reply_token, TextSendMessage(replysong))
+            event.reply_token, TextSendMessage(str(replysong)))
     elif re.match('推餐廳', message):
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage('功能開發中，請等待小水豚發威'))
