@@ -5,21 +5,16 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 from random import choice
-
+import os
 
 def getsong():
-    #建立chrome設定
-    chromeOption = webdriver.ChromeOptions()
-    #設定瀏覽器的user agent
-    chromeOption.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
-    chromeOption.add_argument("start-maximized")
-    chromeOption.add_argument('--headless')
-    chromeOption.add_argument('--no-sandbox')
-    chromeOption.add_argument('--disable-dev-shm-usage')
-    #開啟Chrome瀏覽器
-    driver = webdriver.Chrome(options=chromeOption)
-    #調整瀏覽器視窗大小
-    driver.set_window_size(1024, 960)
+
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_options.add_argument("--headless") #無頭模式
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
     
     driver.get(
         'https://www.youtube.com/watch?v=23g5HBOg3Ic&list=RDCLAK5uy_mOmfogvkugBD9vd5EbejT2y82WidC6as0&start_radio=1')
