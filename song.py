@@ -40,7 +40,8 @@ def getsong():
                 list_song.append(str(song.get_attribute('href')))
 
         onesong = choice(list_song)
-
-        return onesong
         driver.quit()
+        
+    return onesong
+   
     
